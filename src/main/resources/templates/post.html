@@ -17,6 +17,19 @@
                 <p class="card-text" th:text="${post.city.getCity()}">Last updated 3 mins ago</p>
                 <p class="card-text" th:text="'Posted by: '+${post.user.getUsername()}">Last updated 3 mins ago</p>
             </div>
+            <div sec:authorize="isAuthenticated()" th:if="${#request.getRemoteUser() == post.user.getUsername()}" class="text-right">
+                <a th:href="@{'/posts/{id}/edit' (id=${post.getId()})}"
+                   class="btn btn-md btn-secondary mb-2 mr-2 h6">
+                    Edit
+                </a>
+                <form class="d-inline mb-2 mr-2 h-6" th:action="@{'/posts/{id}/delete' (id=${post.getId()})}"
+                      th:method="POST">
+                    <button type="submit"
+                            class="btn btn-md btn-danger  mb-2 mr-2 ">
+                        <i class="fa fa-trash">Delete</i>
+                    </button>
+                </form>
+            </div>
         </div>
     </div>
 </body>
