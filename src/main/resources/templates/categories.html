@@ -1,0 +1,31 @@
+
+<div class="container" xmlns:th="http://www.thymeleaf.org">
+
+<ul class="hor-list list-group list-group-horizontal">
+    <li th:each="cat:${categories}"
+        class="hor-list-item list-group-item border-dark d-flex bg-dark text-white my-1 mr-1">
+        <span th:text="${cat.getCategoryName()}" class="mr-1 my-auto"></span>
+      <span class="ml-1">  <form class="" th:action="@{'/admin/categories/{id}/delete' (id=${cat.getId()})}"
+              th:method="POST">
+            <input type="submit" class="text-white bg-dark" th:value="x">
+        </form></span>
+    </li>
+</ul>
+
+<form action="/admin/categories" method="post">
+    <div class="form-group">
+        <label for="category">Enter category</label>
+        <input type="text"
+               class="form-control"
+               id="category"
+               name="category"
+
+               required
+               placeholder="Enter new category">
+    </div>
+    <button id="submit" type="submit" class="btn btn-primary">Submit</button>
+
+</form>
+
+
+</div>

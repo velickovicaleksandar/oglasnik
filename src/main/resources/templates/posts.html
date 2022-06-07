@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Posts</title>
+</head>
+<body>
+<div class="container">
+<div>
+    <div class="post card mb-3 mt-3 mx-auto w-75" th:each="post:${posts}">
+        <img class="m-1 img-fluid" th:src="${post.getImage()}" alt="...">
+        <div class="card-body">
+            <a th:title="${post.getTitle()}"
+               th:text="${post.getTitle()}"th:href="@{'/posts/{id}'
+               (id=${post.getId()})}" class="h5 link-secondary">
+
+            </a>
+<!--            <h5 class="card-title" th:text="${post.getTitle()}"></h5>-->
+            <p class="card-text" th:text="${post.getDescription()}">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <h6 class="card-text" th:text="${post.getContactNumber()}"></h6>
+            <p class="card-text"><small class="text-muted" th:text="${post.city?.getCity()}">Last updated 3 mins ago</small></p>
+        </div>
+<!--        <span sec:authentication="name">Bob</span>-->
+        <div sec:authorize="isAuthenticated()" th:if="${#request.getRemoteUser() == post.user.getUsername()}" class="text-right">
+            <a th:href="@{'/posts/{id}/edit' (id=${post.getId()})}"
+               class="btn btn-md btn-secondary mb-2 mr-2 h6">
+                Edit
+            </a>
+            <form class="d-inline mb-2 mr-2 h-6" th:action="@{'/posts/{id}/delete' (id=${post.getId()})}"
+                  th:method="POST">
+                <button type="submit"
+                        class="btn btn-md btn-danger  mb-2 mr-2 ">
+                    <i class="fa fa-trash">Delete</i>
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

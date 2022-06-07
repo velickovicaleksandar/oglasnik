@@ -1,0 +1,14 @@
+-- INSERT INTO oglasnik_users VALUES ('admin1','admin@admin.com','admin','admin','admin123','077223305','ROLE_ADMIN');
+-- INSERT INTO city(id,city) VALUES (4,'Bitola');
+-- INSERT INTO city(id,city) VALUES (5,'Gostivar');
+-- INSERT INTO city(id,city) VALUES (6,'Novi Sad');
+-- INSERT INTO city(id,city) VALUES (7,'Prilep');
+-- INSERT INTO city(id,city) VALUES (8,'Veles');
+-- COMMIT;
+--
+-- INSERT INTO category(id,category_name) VALUES (1,'mobilni telefoni');
+-- INSERT INTO category(id,category_name) VALUES (2,'televizori');
+-- INSERT INTO category(id,category_name) VALUES (3,'masini i alati');
+-- INSERT INTO category(id,category_name) VALUES (4,'sport');
+-- COMMIT;
+

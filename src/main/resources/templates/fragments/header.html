@@ -1,0 +1,97 @@
+<header xmlns:th="http://www.thymeleaf.org">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/"><sup>onthe</sup> H U N T</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+                    aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-end" id="navbarsExampleDefault">
+                <ul class="navbar-nav m-auto">
+                    <li class="nav-item m-auto">
+                        <a class="nav-link active" href="/posts">Posts</a>
+                    </li>
+                    <li class="nav-item m-auto" >
+                        <a class="nav-link active" href="/posts/add">Add Post</a>
+                    </li>
+                    <li class="nav-item m-auto" sec:authorize="isAuthenticated()">
+                        <a class="nav-link active" th:href="@{'/posts/{username}/posted' (username=${#request.getRemoteUser()})}">My Posts</a>
+                    </li>
+                    <li class="nav-item m-auto" sec:authorize="hasRole('ROLE_ADMIN')">
+                        <a class="nav-link active" th:href="@{'/admin/categories' (username=${#request.getRemoteUser()})}">Categories</a>
+                    </li>
+                    <li class="nav-item m-auto" sec:authorize="hasRole('ROLE_ADMIN')">
+                        <a class="nav-link active" th:href="@{'/admin/cities' (username=${#request.getRemoteUser()})}">Cities</a>
+                    </li>
+
+                </ul>
+
+
+                <form class="form-inline my-2 my-lg-0" th:method="GET" action="/posts/search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" aria-label="Small"
+                               name="search"
+                               id="search"
+                               aria-describedby="inputGroup-sizing-sm"
+                               placeholder="Search...">
+
+                    </div>
+                    <div class="form-group">
+                        <select name="category" class="form-control m-2" searchable="Search category.." placeholder="Choose category">
+                            <option value="" selected disabled hidden>Choose category</option>
+                            <option th:each="cat : ${categories}"
+                                    th:value="${cat.getId()}"
+                                    th:text="${cat.getCategoryName()}">
+                            </option>
+
+                        </select>
+                        <select name="city" class="form-control m-2">
+                            <option value="" selected disabled hidden>Choose city</option>
+                            <option
+                                    th:each="city : ${cities}"
+                                    th:value="${city.getId()}"
+                                    th:text="${city.getCity()}">
+                            </option>
+
+                        </select>
+                    </div>
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-secondary btn-number">
+                            Search
+                        </button>
+                    </div>
+                </form>
+                <ul class="nav navbar-nav navbar-right">
+
+                    <li class="nav-item" >
+                        <a class="nav-link" href="#">
+                            <th:block th:if="${#request.getRemoteUser() != null}"
+                                      th:text="${#request.getRemoteUser()}"></th:block>
+                        </a>
+                    </li>
+
+                    <li class="nav-item" sec:authorize="isAuthenticated()">
+                        <a class="btn btn-light ml-3" href="/logout">
+                            Logout
+                        </a>
+                    </li>
+                    <li class="nav-item" sec:authorize="!isAuthenticated()">
+                        <a class="btn btn-light ml-3" href="/login">
+                            Log in
+                        </a>
+                    </li>
+                    <li class="nav-item text-white text-center my-auto mx-1" sec:authorize="!isAuthenticated()">
+                     or
+                    </li>
+                    <li class="nav-item" sec:authorize="!isAuthenticated()">
+
+                        <a class="btn btn-light" href="/register">
+                            Register
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>

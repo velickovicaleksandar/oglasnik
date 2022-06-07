@@ -1,0 +1,34 @@
+<div class="container" xmlns:th="http://www.thymeleaf.org">
+
+    <ul class="hor-list list-group list-group-horizontal">
+        <li th:each="city:${cities}"  class="hor-list-item list-group-item border-dark bg-dark d-flex text-white my-1 mr-1">
+       <span th:text="${city.getCity()}" class="mr-1 my-auto"></span>
+            <span class="ml-1">
+            <form th:action="@{'/admin/cities/{id}/delete' (id=${city.getId()})}"
+                  th:method="POST">
+                <input type="submit" class="text-white bg-dark" th:value="x">
+            </form>
+
+            </span>
+
+        </li>
+    </ul>
+<div class="row">
+    <form action="/admin/cities" method="post">
+        <div class="form-group">
+            <label for="city">Enter category</label>
+            <input type="text"
+                   class="form-control"
+                   id="city"
+                   name="city"
+
+                   required
+                   placeholder="Enter new city">
+        </div>
+        <button id="submit" type="submit" class="btn btn-primary">Submit</button>
+
+    </form>
+
+
+</div>
+</div>

@@ -1,0 +1,76 @@
+<div xmlns:th="http://www.thymeleaf.org">
+<div class="container">
+    <div class="row">
+<form action="/register" method="post">
+
+    <div class="form-group">
+
+        <label for="username">Username</label>
+        <input type="text"
+               class="form-control"
+               id="username"
+               name="username"
+
+               required
+               placeholder="Enter your username">
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password"
+               class="form-control"
+               id="password"
+               name="password"
+
+               required
+               placeholder="Enter password">
+    </div>
+    <div class="form-group">
+        <label for="repeatPassword">Repeat Password</label>
+        <input type="password"
+               class="form-control"
+               id="repeatPassword"
+               name="repeatPassword"
+               required
+               placeholder="Repeat Password">
+    </div>
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text"
+               class="form-control"
+               id="name"
+               name="name"
+               required
+               placeholder="Enter your name">
+    </div>
+    <div class="form-group">
+        <label for="lastname">Last Name</label>
+        <input type="text"
+               class="form-control"
+               id="lastname"
+               name="lastname"
+               required
+               placeholder="Enter your lastname">
+    </div>
+    <div class="form-group">
+        <label for="contactEmail">E-mail</label>
+        <input type="email"
+               class="form-control"
+               id="contactEmail"
+               name="contactEmail"
+               required
+               placeholder="Enter your email">
+    </div>
+    <div class="form-group">
+        <label for="contactNumber">Number</label>
+        <input type="text"
+               class="form-control"
+               id="contactNumber"
+               name="contactNumber"
+               required
+               placeholder="Enter your phone number">
+    </div>
+    <button id="submit" type="submit" class="btn btn-primary">Submit</button>
+
+</form>
+</div></div>
+</div>

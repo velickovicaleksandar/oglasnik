@@ -1,0 +1,116 @@
+
+
+
+<div class="container"  xmlns:th="http://www.thymeleaf.org">
+    <div class="row">
+
+            <form action="/posts/add" method="post">
+                <input
+                type="hidden"
+                id="username"
+                name="username"
+                th:value="${#request.getRemoteUser().toString()}"
+                >
+                <input
+                        type="hidden"
+                        id="id"
+                        name="id"
+                        th:value="${p?.getId()}"
+                >
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <input type="text"
+                           class="form-control"
+                           id="title"
+                           name="title"
+                           th:value="${p?.getTitle()}"
+                           required
+                           placeholder="Enter title">
+                </div>
+                <div class="form-group">
+                    <label for="image">Image</label>
+                    <input type="text"
+                           class="form-control"
+                           id="image"
+                           name="image"
+                            th:value="${p?.getImage()}"
+                           required
+                           placeholder="Enter image">
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea type="text"
+                           class="form-control"
+                           id="description"
+                           name="description"
+
+                           required
+                              placeholder="Enter description"><th:block th:text="${p?.getDescription()}">
+
+                        </th:block></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="contactMail">E-mail</label>
+                    <input type="email"
+                           class="form-control"
+                           id="contactMail"
+                           name="contactMail"
+                            th:value="${p?.getContactMail()}"
+                           required
+                           placeholder="E-mail">
+                </div>
+                <div class="form-group">
+                    <label for="contactNumber">Phone number</label>
+                    <input type="text"
+                           class="form-control"
+                           id="contactNumber"
+                           name="contactNumber"
+                           th:value="${p?.getContactNumber()}"
+                           required
+                           placeholder="Phone number">
+                </div>
+                <div class="form-group">
+                    <label>Category</label>
+                    <select name="category" class="form-control">
+                        <option th:if="${p}!= null"
+                                th:each="cat : ${categories}"
+                                th:value="${cat.getId()}"
+                                th:text="${cat.getCategoryName()}"
+                                th:selected="(${p?.getCategory().getId()} == ${cat.getId()})">
+                        </option>
+                        <option th:if="${p}== null"
+                                th:each="cat : ${categories}"
+                                th:value="${cat.getId()}"
+                                th:text="${cat.getCategoryName()}"
+                               >
+                        </option>
+
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>City</label>
+                    <select name="city" class="form-control">
+                        <option th:if="${p}!= null"
+                                th:each="city : ${cities}"
+                                th:value="${city.getId()}"
+                                th:text="${city.getCity()}"
+                                th:selected="(${p?.getCity().getId()}==${city.getId()})">
+                        </option>
+                        <option th:if="${p}== null"
+                                th:each="city : ${cities}"
+                                th:value="${city.getId()}"
+                                th:text="${city.getCity()}"
+                             >
+                        </option>
+
+                    </select>
+                </div>
+                <button id="submit" type="submit" class="btn btn-primary">Add Post</button>
+
+
+
+
+            </form>
+
+    </div>
+</div>
